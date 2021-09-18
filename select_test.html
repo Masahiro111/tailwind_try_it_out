@@ -18,7 +18,10 @@
 
                 <!-- This example requires Tailwind CSS v2.0+ -->
                 <div
-                     x-data="{ selectOpen: false }"
+                     x-data="{ 
+                         selectOpen: false,
+                         activeIndex: 0 
+                     }"
                      x-on:keydown.escape.stop="selectOpen = false"
                      x-on:click.away="selectOpen = false"
                      class="relative inline-block text-left">
@@ -54,8 +57,11 @@
                          class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                          x-transition:enter="transition ease-out duration-100"
                          x-transition:enter-start="transform opacity-0 scale-95"
-                         x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state."
-
+                         x-transition:enter-end="transform opacity-100 scale-100"
+                         x-transition:leave="transition ease-in duration-75"
+                         x-transition:leave-start="transform opacity-100 scale-100"
+                         x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" x-ref="menu-items"
+                         x-description="Dropdown menu, show/hide based on menu state."
                          role="menu"
                          aria-orientation="vertical"
                          aria-labelledby="menu-button"
