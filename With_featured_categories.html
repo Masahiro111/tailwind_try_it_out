@@ -11,9 +11,16 @@
     </head>
 
     <body>
-
         <!-- This example requires Tailwind CSS v2.0+ -->
-        <div class="fixed inset-0 overflow-hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+        <div
+             x-data="{ open: true }"
+             x-on:keydown.window.escape="open = false"
+             x-init="$watch(&quot;open&quot;, o => !o && window.setTimeout(() => (open = true), 1000))"
+             x-show="open"
+             class="fixed inset-0 overflow-hidden"
+             aria-labelledby="slide-over-title"
+             role="dialog"
+             aria-modal="true">
             <div class="absolute inset-0 overflow-hidden">
                 <!--
         Background overlay, show/hide based on slide-over state.
@@ -25,7 +32,16 @@
           From: "opacity-100"
           To: "opacity-0"
       -->
-                <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                <div
+                     x-show="open"
+                     x-transition:enter="ease-in-out duration-500"
+                     x-transition:enter-start="opacity-0"
+                     x-transition:enter-end="opacity-100"
+                     x-transition:leave="ease-in-out duration-500"
+                     x-transition:leave-start="opacity-100"
+                     x-transition:leave-end="opacity-0"
+                     x-on:click="open = false"
+                     class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
 
                 <div class="fixed inset-y-0 right-0 pl-10 max-w-full flex">
                     <!--
@@ -38,7 +54,15 @@
             From: "translate-x-0"
             To: "translate-x-full"
         -->
-                    <div class="w-screen max-w-md">
+                    <div
+                         x-show="open"
+                         x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
+                         x-transition:enter-start="translate-x-full"
+                         x-transition:enter-end="translate-x-0"
+                         x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
+                         x-transition:leave-start="translate-x-0"
+                         x-transition:leave-end="translate-x-full"
+                         class="w-screen max-w-md">
                         <div class="h-full flex flex-col bg-white shadow-xl overflow-y-scroll">
                             <div class="flex-1 py-6 overflow-y-auto px-4 sm:px-6">
                                 <div class="flex items-start justify-between">
@@ -46,7 +70,10 @@
                                         Shopping cart
                                     </h2>
                                     <div class="ml-3 h-7 flex items-center">
-                                        <button type="button" class="-m-2 p-2 text-gray-400 hover:text-gray-500">
+                                        <button
+                                                type="button"
+                                                class="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                                                x-on:click="open=false">
                                             <span class="sr-only">Close panel</span>
                                             <!-- Heroicon name: outline/x -->
                                             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
